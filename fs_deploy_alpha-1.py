@@ -3,7 +3,7 @@
 
 ### TODO ###
 
-file_name = 'https://raw.githubusercontent.com/ZhaZhaFon/ScoringRanking/master/%E7%BB%93%E6%9E%9C-%E6%B1%87%E6%80%BB_20221231.xlsx'
+file_name = 'https://raw.githubusercontent.com/ZhaZhaFon/ScoringRanking/blob/master/results_20221231.xlsx'
 top = 500
 
 ### TODO ###
