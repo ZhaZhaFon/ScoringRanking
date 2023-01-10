@@ -119,6 +119,8 @@ while True:
     if selection:
         st.write("You selected:")
         st.json(selection["selected_rows"])
-        print(selection["selected_rows"])
+        fund_code = selection["selected_rows"][0]['基金代码']
+        this_fund = ranking[ranking['基金代码']==fund_code]
+        print(this_fund)
 
     
