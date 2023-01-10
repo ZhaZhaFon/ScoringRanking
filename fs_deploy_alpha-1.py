@@ -3,8 +3,9 @@
 
 ### TODO ###
 
-file_name = 'https://raw.githubusercontent.com/ZhaZhaFon/ScoringRanking/blob/master/results_20221231.xlsx'
-top = 500
+file_name = 'https://github.com/ZhaZhaFon/ScoringRanking/files/10374068/results_20221231.xlsx'
+#file_name = 'https://github.com/ZhaZhaFon/ScoringRanking/blob/master/results_20221231.csv?raw=true'
+top = 100
 
 ### TODO ###
 
@@ -12,6 +13,7 @@ top = 500
 
 import numpy as np
 import pandas as pd
+import os
 
 import streamlit as st
 
@@ -21,8 +23,8 @@ from pyecharts import options as opts
 # 标题
 
 st.set_page_config(layout="centered", page_icon="🎓", page_title="")
-st.title("基金量化打分")
-st.write(f"呈现结果源于: {file_name} (仅展示前{top}名)")
+st.title("基金量化打分 - 主动权益基金")
+st.write(f"呈现结果源于: [{file_name.split('/')[-1]}]({file_name}) （仅展示前{top}名）")
 
 # 数据
 
@@ -49,7 +51,6 @@ def aggrid_interactive_table(df: pd.DataFrame):
     )
     return selection
 
-from pyecharts.faker import Faker
 import streamlit_echarts
 
 def product_radar(this_fund):
