@@ -14,6 +14,7 @@ top = 100
 import numpy as np
 import pandas as pd
 import os
+import time
 
 import streamlit as st
 
@@ -99,18 +100,25 @@ def product_radar(this_fund):
     )
     return radar
 
-## 交互式雷达图 - 基金产品/经理/公司维度
+while True:
 
-radar_product = product_radar(this_fund)
+    time.sleep(0.5)
 
-streamlit_echarts.st_pyecharts(
-    radar_product
-)
+    ## 交互式雷达图 - 基金产品/经理/公司维度
 
-## 交互式表格 - 基金量化打分结果
+    radar_product = product_radar(this_fund)
 
-selection = aggrid_interactive_table(df=ranking)
+    streamlit_echarts.st_pyecharts(
+        radar_product
+    )
 
-if selection:
-    st.write("You selected:")
-    st.json(selection["selected_rows"])
+    ## 交互式表格 - 基金量化打分结果
+
+    selection = aggrid_interactive_table(df=ranking)
+
+    if selection:
+        st.write("You selected:")
+        st.json(selection["selected_rows"])
+        print(selection["selected_rows"])
+
+    
