@@ -27,7 +27,7 @@ ranking = pd.read_excel(file_name, index_col=0).reset_index().rename(columns={"i
 product_tuple = tuple(ranking['基金代码'].tolist())
 manager_tuple = tuple(ranking['基金经理'].tolist())
 company_tuple = tuple(ranking['基金公司'].tolist())
-st.write("`#` 加载完毕, 呈现结果基于量化评分排名: [{file_name.split('/')[-1]}]({file_name})")
+st.write(f"`#` 加载完毕, 呈现结果基于量化评分排名: [{file_name.split('/')[-1]}]({file_name})")
 
 # 雷达图 - 基金产品
 
@@ -89,20 +89,31 @@ fundcode = form.selectbox(
     "主动权益基金",
     options=product_tuple,
 )
+plot = st.radio(
+        "Set label visibility 👇",
+        ["1", "2", "3"],
+        key="visibility",
+        label_visibility=st.session_state.visibility,
+        disabled=st.session_state.disabled,
+        horizontal=st.session_state.horizontal,
+    )
 submit = form.form_submit_button("量化评分")
 
 if submit:
     this_fund = ranking[ranking['基金代码']==fundcode].iloc[0, :]
     radar_product = product_radar(this_fund)
-    streamlit_echarts.st_pyecharts(
-        radar_product
-    )
-    streamlit_echarts.st_pyecharts(
-        radar_product
-    )
-    streamlit_echarts.st_pyecharts(
-        radar_product
-    )
+    if plot == "1":
+        streamlit_echarts.st_pyecharts(
+            radar_product
+        )
+    if plot == "2":
+        streamlit_echarts.st_pyecharts(
+            radar_product
+        )
+    if plot == "3":
+        streamlit_echarts.st_pyecharts(
+            radar_product
+        )
 
 # 右侧布局
 
