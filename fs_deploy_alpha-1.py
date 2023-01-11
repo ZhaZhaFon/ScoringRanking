@@ -27,9 +27,7 @@ ranking = pd.read_excel(file_name, index_col=0).reset_index().rename(columns={"i
 product_tuple = tuple(ranking['基金代码'].tolist())
 manager_tuple = tuple(ranking['基金经理'].tolist())
 company_tuple = tuple(ranking['基金公司'].tolist())
-st.write("`#` 加载完毕.")
-#'''
-st.write(f"`#` 呈现结果源于: [{file_name.split('/')[-1]}]({file_name})")
+st.write("`#` 加载完毕, 呈现结果基于量化评分排名: [{file_name.split('/')[-1]}]({file_name})")
 
 # 雷达图 - 基金产品
 
@@ -82,16 +80,16 @@ def product_radar(this_fund):
 # 布局
 
 left, right = st.columns(2)
-left.write("##### 【基金信息】")
+left.write("##### 【主动权益基金列表】")
 
 # 左侧布局
 
 form = left.form("template_form")
-fundcode = form.selectbox(
+fundcode = left.selectbox(
     "基金产品",
     options=product_tuple,
 )
-submit = form.form_submit_button("量化评分")
+submit = left.form_submit_button("量化评分")
 
 if submit:
     this_fund = ranking[ranking['基金代码']==fundcode].iloc[0, :]
@@ -102,4 +100,4 @@ if submit:
 
 # 右侧布局
 
-right.write("##### 【量化评分】")
+right.write("##### 【基本信息】")
