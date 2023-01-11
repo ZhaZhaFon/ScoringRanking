@@ -97,6 +97,12 @@ if submit:
     streamlit_echarts.st_pyecharts(
         radar_product
     )
+    streamlit_echarts.st_pyecharts(
+        radar_product
+    )
+    streamlit_echarts.st_pyecharts(
+        radar_product
+    )
 
 # 右侧布局
 
