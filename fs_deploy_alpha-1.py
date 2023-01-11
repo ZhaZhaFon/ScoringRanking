@@ -92,11 +92,7 @@ fundcode = form.selectbox(
 plot = form.radio(
         "Set label visibility 👇",
         ["1", "2", "3"],
-        key="visibility",
-        label_visibility=st.session_state.visibility,
-        disabled=st.session_state.disabled,
-        horizontal=st.session_state.horizontal,
-    )
+     )
 submit = form.form_submit_button("量化评分")
 
 if submit:
