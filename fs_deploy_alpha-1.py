@@ -79,7 +79,7 @@ def product_radar(this_fund):
 
 # 雷达图 - 基金经理
 
-def manager_rader(this_fund):
+def manager_radar(this_fund):
     this_scores = [[this_fund['分项合计-经理'].astype('float').round(2),
                     this_fund['盈利得分-经理'].astype('float').round(2),
                     this_fund['风控得分-经理'].astype('float').round(2),
@@ -124,7 +124,7 @@ def manager_rader(this_fund):
 
 # 雷达图 - 基金公司
 
-def company_rader(this_fund):
+def company_radar(this_fund):
     this_scores = [[this_fund['分项合计-公司'].astype('float').round(2),
                     this_fund['短期业绩得分-公司'].astype('float').round(2),
                     this_fund['长期业绩得分-公司'].astype('float').round(2)]]
@@ -187,12 +187,14 @@ right.write("##### 【量化评分维度】")
 if submit:
     this_fund = ranking[ranking['基金代码']==fundcode].iloc[0, :]
     radar_product = product_radar(this_fund)
+    radar_manager = manager_radar(this_fund)
+    radar_company = company_radar(this_fund)
     if radar_type == "基金产品":
         streamlit_echarts.st_pyecharts(radar_product)
     if radar_type == "基金经理":
-        streamlit_echarts.st_pyecharts(radar_product)
+        streamlit_echarts.st_pyecharts(radar_manager)
     if radar_type == "基金公司":
-        streamlit_echarts.st_pyecharts(radar_product)
+        streamlit_echarts.st_pyecharts(radar_company)
 
 # 备注
 
