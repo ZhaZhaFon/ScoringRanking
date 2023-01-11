@@ -18,7 +18,7 @@ st.title("基金量化评分 - 主动权益基金")
 
 # 数据
 #'''
-st.write("`#` 数据加载(约10s)...")
+st.write("`#` 数据加载(约5s)...")
 ranking = pd.read_excel(file_name, index_col=0).reset_index().rename(columns={"index": "基金代码"})
 st.write("`#` 加载完毕.")
 #'''
@@ -34,7 +34,7 @@ left.write("##### 【基金信息】")
 form = left.form("template_form")
 ans = left.selectbox(
     "基金产品",
-    options=tuple(ranking.index.tolist())
+    options=tuple(ranking['基金代码'].tolist())
 )
 # 右侧布局
 
