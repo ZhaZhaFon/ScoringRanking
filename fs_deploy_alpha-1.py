@@ -71,8 +71,8 @@ def product_radar(this_fund):
                                         pos_bottom='bottom',
                                         pos_left='left',),
             title_opts=opts.TitleOpts(title=f"基金产品得分", 
-                                    pos_top='top',
-                                    title_textstyle_opts=opts.TextStyleOpts(font_family='KaiTi', font_size=20)),
+                                      pos_top='top',
+                                      title_textstyle_opts=opts.TextStyleOpts(font_family='KaiTi', font_size=20)),
         )
     )
     return radar_product
@@ -115,9 +115,9 @@ def manager_radar(this_fund):
             legend_opts=opts.LegendOpts(selected_mode="multiple",
                                         pos_bottom='bottom'),
             title_opts=opts.TitleOpts(title=f"基金经理得分", 
-                                    pos_left='center',
-                                    pos_top='top', 
-                                    title_textstyle_opts=opts.TextStyleOpts(font_family='KaiTi', font_size=20)),
+                                      pos_top='top', 
+                                      pos_left='left',
+                                      title_textstyle_opts=opts.TextStyleOpts(font_family='KaiTi', font_size=20)),
         )
     )
     return radar_manager
@@ -154,9 +154,9 @@ def company_radar(this_fund):
             legend_opts=opts.LegendOpts(selected_mode="multiple",
                                         pos_bottom='bottom'),
             title_opts=opts.TitleOpts(title=f"基金公司得分", 
-                                    pos_left='center',
-                                    pos_top='top', 
-                                    title_textstyle_opts=opts.TextStyleOpts(font_family='KaiTi', font_size=20)),
+                                      pos_top='top', 
+                                      pos_left='left',
+                                      title_textstyle_opts=opts.TextStyleOpts(font_family='KaiTi', font_size=20)),
         )
     )
     return radar_company
@@ -195,14 +195,14 @@ if submit:
     if radar_type == "基金公司":
         streamlit_echarts.st_pyecharts(radar_company)
 
+# 排名表格
+
+st.write("##### 【量化评分排名】")
+ranking.iloc[:, 6:] = ranking.iloc[:, 6:].astype('float').round(2)
+st.dataframe(ranking)
+
 # 备注
 
 st.write("- 数据来源: Wind")
 st.write("- 主动权益基金: Wind一级投资类型下的普通股票型、偏股混合型、平衡混合型、灵活配置型基金")
 st.write("- 基金池: 仅考虑现任基金经理任职>2年、最新规模>2亿元、过去5期平均权益仓位不低于60%的初始基金(A份额)作为样本")
-
-# 排名
-
-st.write("##### 【量化评分排名】")
-ranking.iloc[:, 6:] = ranking.iloc[:, 6:].astype('float').round(2)
-st.dataframe(ranking)
