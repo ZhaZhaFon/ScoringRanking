@@ -159,7 +159,7 @@ def company_rader(this_fund):
                                     title_textstyle_opts=opts.TextStyleOpts(font_family='KaiTi', font_size=20)),
         )
     )
-    return radar_compnay
+    return radar_company
 
 # 布局
 
