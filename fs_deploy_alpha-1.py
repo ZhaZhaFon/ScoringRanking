@@ -80,16 +80,16 @@ def product_radar(this_fund):
 # 布局
 
 left, right = st.columns(2)
-left.write("##### 【主动权益基金列表】")
+left.write("##### 【基金池】")
 
 # 左侧布局
 
 form = left.form("template_form")
-fundcode = left.selectbox(
-    "基金产品",
+fundcode = form.selectbox(
+    "主动权益基金",
     options=product_tuple,
 )
-submit = left.form_submit_button("量化评分")
+submit = form.form_submit_button("量化评分")
 
 if submit:
     this_fund = ranking[ranking['基金代码']==fundcode].iloc[0, :]
