@@ -174,15 +174,14 @@ fundcode = form_left.selectbox(
     options=product_tuple,
 )
 radar_type = form_left.radio(
-    label="基金产品/基金经理/基金公司",
+    label="量化评分维度：基金产品/基金经理/基金公司",
     options=["基金产品", "基金经理", "基金公司"],
 )
 submit = form_left.form_submit_button("量化评分")
 
 # 右侧布局
 
-right.write("##### 【量化评分维度】")
-
+right.write("##### 【比较基准】")
 
 if submit:
     this_fund = ranking[ranking['基金代码']==fundcode].iloc[0, :]
@@ -198,6 +197,7 @@ if submit:
 
 # 备注
 
+st.write("- 数据来源: Wind")
 st.write("- 主动权益基金: Wind一级投资类型下的普通股票型、偏股混合型、平衡混合型、灵活配置型基金")
 st.write("- 基金池: 仅考虑现任基金经理任职>2年、最新规模>2亿元、过去5期平均权益仓位不低于60%的初始基金(A份额)作为样本")
 
