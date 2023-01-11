@@ -203,5 +203,6 @@ st.write("- 基金池: 仅考虑现任基金经理任职>2年、最新规模>2�
 
 # 排名
 
-st.write("##### 量化评分排名")
-st.dataframe(ranking.astype('float').round(2))
+st.write("##### 【量化评分排名】")
+ranking.iloc[:, 6:] = ranking.iloc[:, 6:].astype('float').round(2)
+st.dataframe(ranking)
