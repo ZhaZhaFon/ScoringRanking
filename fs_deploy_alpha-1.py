@@ -89,7 +89,7 @@ fundcode = form.selectbox(
     "主动权益基金",
     options=product_tuple,
 )
-plot = st.radio(
+plot = form.radio(
         "Set label visibility 👇",
         ["1", "2", "3"],
         key="visibility",
