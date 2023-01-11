@@ -173,16 +173,16 @@ fundcode = form_left.selectbox(
     label="主动权益基金",
     options=product_tuple,
 )
-
-# 右侧布局
-
-right.write("##### 【量化评分维度】")
-form_right = right.form("template_form")
-radar_type = form_right.radio(
+radar_type = form_left.radio(
     label="基金产品/基金经理/基金公司",
     options=["基金产品", "基金经理", "基金公司"],
 )
 submit = form_left.form_submit_button("量化评分")
+
+# 右侧布局
+
+right.write("##### 【量化评分维度】")
+
 
 if submit:
     this_fund = ranking[ranking['基金代码']==fundcode].iloc[0, :]
