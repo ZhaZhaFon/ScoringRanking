@@ -94,7 +94,7 @@ fundcode = form.selectbox(
 submit = form.form_submit_button("量化评分")
 
 if submit:
-    this_fund = ranking[ranking['基金代码']==fundcode]
+    this_fund = ranking[ranking['基金代码']==fundcode].iloc[0, :]
     radar_product = product_radar(this_fund)
     streamlit_echarts.st_pyecharts(
         radar_product
