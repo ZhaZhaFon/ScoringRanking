@@ -190,10 +190,16 @@ fundname = ans.split(' ')[1]
 fund_manager = ranking[ranking['基金代码']==fundcode]['基金经理'].item()
 fund_company = ranking[ranking['基金代码']==fundcode]['基金公司'].item()
 
+score_product = ranking[ranking['基金代码']==fundcode]['分项合计-产品'].item()
+score_manager = ranking[ranking['基金代码']==fundcode]['分项合计-经理'].item()
+score_company = ranking[ranking['基金代码']==fundcode]['分项合计-公司'].item()
+score_final = ranking[ranking['基金代码']==fundcode]['综合得分'].item()
+
 right.write("##### 【基本信息】")
-right.write(f'- 基金产品: {fundname}({fundcode})')
-right.write(f'- 基金经理: {fund_manager}')
-right.write(f'- 基金公司: {fund_company}')
+right.write(f'- 基金产品: {fundname} {fundcode} (得分: {score_product})')
+right.write(f'- 基金经理: {fund_manager} (得分: {score_manager})')
+right.write(f'- 基金公司: {fund_company} (得分: {score_company})')
+right.write(f'- 综合得分: {score_final}')
 
 # 提交
 
