@@ -230,9 +230,12 @@ if submit:
         streamlit_echarts.st_pyecharts(radar_manager)
     if radar_type == "基金公司":
         streamlit_echarts.st_pyecharts(radar_company)
-    right.write(f'- 基金产品: {fundname} (得分{score_product}, 排名{score_product_rank}/{len(score_company_all)})')
-    right.write(f'- 基金经理: {fund_manager} (得分{score_manager}, 排名{score_manager_rank}/{len(score_manager_all)})')
-    right.write(f'- 基金公司: {fund_company} (得分{score_company}, 排名{score_company_rank}/{len(score_company_all)})')
+    right.write(f'- 基金产品: {fundname}')
+    right.write(f'- 基金产品得分: {score_product} 排名: {score_product_rank}/{len(score_product_all)})')
+    right.write(f'- 基金经理: {fund_manager}')
+    right.write(f'- 基金经理得分: {score_manager} 排名: {score_manager_rank}/{len(score_manager_all)})')
+    right.write(f'- 基金公司: {fund_company}')
+    right.write(f'- 基金公司得分: {score_company} 排名: {score_company_rank}/{len(score_company_all)})')
     right.write(f'- 综合得分: {score_final}')
     right.write(f'- 综合排名: {score_final_rank}/{len(score_final_all)}')
 
