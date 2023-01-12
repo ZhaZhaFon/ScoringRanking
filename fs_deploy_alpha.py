@@ -196,7 +196,7 @@ fund_company = ranking[ranking['基金代码']==fundcode]['基金公司'].item()
 
 ranking.fillna(value=-999, inplace=True) ### TODO
 
-st.dataframe(ranking)
+st.dataframe(ranking['分项合计-产品'])
 ## 产品得分
 score_product = ranking[ranking['基金代码']==fundcode]['分项合计-产品'].item()
 score_product_all = ranking['分项合计-产品'].tolist().sort(reverse=True)
