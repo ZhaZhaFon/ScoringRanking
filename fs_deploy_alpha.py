@@ -24,13 +24,11 @@ st.title("基金量化评分 - 主动权益基金")
 #'''
 st.write("`#` 数据加载(约5s)...")
 ranking = pd.read_excel(file_name, index_col=0).reset_index().rename(columns={"index": "基金代码"})
+options_df = ranking['基金代码'] + ' ' + ranking['基金简称']
 product_tuple = tuple(ranking['基金代码'].tolist())
 manager_tuple = tuple(ranking['基金经理'].tolist())
 company_tuple = tuple(ranking['基金公司'].tolist())
-product_manager_company = []
-for i in range(len(product_tuple)):
-    product_manager_company.append(f"{product_tuple[i]} {manager_tuple[i]}/{company_tuple[i]}")
-product_manager_company_tuple = tuple(product_manager_company)
+options_tuple = tuple(options_df.iloc[:, 0].tolist())
 st.write(f"`#` 加载完毕, 呈现结果基于量化评分排名: [{file_name.split('/')[-1]}]({file_name})")
 
 # 雷达图 - 基金产品
@@ -175,9 +173,9 @@ left.write("##### 【基金池】")
 form_left = left.form("template_form")
 ans = form_left.selectbox(
     label="主动权益基金",
-    options=product_manager_company_tuple,
+    options=options_tuple,
 )
-fundcode = ans.split(' ')[0]
+
 radar_type = form_left.radio(
     label="量化评分维度",
     options=["基金产品", "基金经理", "基金公司"],
@@ -185,6 +183,9 @@ radar_type = form_left.radio(
 submit = form_left.form_submit_button("量化评分")
 
 # 右侧布局
+
+fundcode = ans.split(' ')[0]
+#fundname = ans.split(' ')[1].split('/')[0]
 
 right.write("##### 【基本信息】")
 #right.write(f'- 基金产品: {fundname}({fundcode})')
