@@ -198,7 +198,7 @@ ranking.fillna(value=-999, inplace=True)### TODO
 
 ## 产品得分
 score_product = ranking[ranking['基金代码']==fundcode]['分项合计-产品'].item()
-score_product_all = ranking['分项合计-产品'].fillna(value=0, inplace=True).tolist().sort(reverse=True)
+score_product_all = ranking['分项合计-产品'].tolist().sort(reverse=True)
 score_product_rank = score_product_all.index(score_product) + 1
 score_product = round(score_product, 2)
 
