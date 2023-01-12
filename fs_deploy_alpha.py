@@ -191,10 +191,10 @@ fund_manager = ranking[ranking['基金代码']==fundcode]['基金经理'].item()
 fund_company = ranking[ranking['基金代码']==fundcode]['基金公司'].item()
 
 print(ranking[ranking['基金代码']==fundcode]['分项合计-产品'].item())
-score_product = ranking[ranking['基金代码']==fundcode]['分项合计-产品'].item().astype('float').round(2)
-score_manager = ranking[ranking['基金代码']==fundcode]['分项合计-经理'].item().astype('float').round(2)
-score_company = ranking[ranking['基金代码']==fundcode]['分项合计-公司'].item().astype('float').round(2)
-score_final = ranking[ranking['基金代码']==fundcode]['综合得分'].item().astype('float').round(2)
+score_product = round(ranking[ranking['基金代码']==fundcode]['分项合计-产品'].item(), 2)
+score_manager = round(ranking[ranking['基金代码']==fundcode]['分项合计-经理'].item(), 2)
+score_company = round(ranking[ranking['基金代码']==fundcode]['分项合计-公司'].item(), 2)
+score_final = round(ranking[ranking['基金代码']==fundcode]['综合得分'].item(), 2)
 
 # .rank(method='dense', ascending=True, pct=True)
 
