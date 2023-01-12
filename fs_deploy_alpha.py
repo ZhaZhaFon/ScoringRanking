@@ -24,11 +24,12 @@ st.title("基金量化评分 - 主动权益基金")
 #'''
 st.write("`#` 数据加载(约5s)...")
 ranking = pd.read_excel(file_name, index_col=0).reset_index().rename(columns={"index": "基金代码"})
-options_df = ranking['基金代码'] + ' ' + ranking['基金简称']
+options_df = pd.DataFrame()
+options_df['选项卡'] = ranking['基金代码'] + ' ' + ranking['基金简称']
 product_tuple = tuple(ranking['基金代码'].tolist())
 manager_tuple = tuple(ranking['基金经理'].tolist())
 company_tuple = tuple(ranking['基金公司'].tolist())
-options_tuple = tuple(options_df.iloc[:, 0].tolist())
+options_tuple = tuple(options_df['选项卡'].tolist())
 st.write(f"`#` 加载完毕, 呈现结果基于量化评分排名: [{file_name.split('/')[-1]}]({file_name})")
 
 # 雷达图 - 基金产品
