@@ -196,7 +196,7 @@ fund_company = ranking[ranking['基金代码']==fundcode]['基金公司'].item()
 
 ## 产品得分
 score_product = ranking[ranking['基金代码']==fundcode]['分项合计-产品'].item()
-st.dataframe(pd.DataFrame(ranking['分项合计-产品'].tolist().sort(reverse=True)))
+st.dataframe(pd.DataFrame(ranking['分项合计-产品'].tolist()))
 score_product_all = ranking['分项合计-产品'].tolist().sort(reverse=True)
 score_product_rank = score_product_all.index(score_product) + 1
 score_product = round(score_product, 2)
