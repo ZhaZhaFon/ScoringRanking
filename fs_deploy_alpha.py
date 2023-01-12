@@ -194,8 +194,9 @@ fundname = ans.split(' ')[1]
 fund_manager = ranking[ranking['基金代码']==fundcode]['基金经理'].item()
 fund_company = ranking[ranking['基金代码']==fundcode]['基金公司'].item()
 
-ranking.fillna(value=-999, inplace=True)### TODO
+ranking.fillna(value=-999, inplace=True) ### TODO
 
+st.dataframe(ranking)
 ## 产品得分
 score_product = ranking[ranking['基金代码']==fundcode]['分项合计-产品'].item()
 score_product_all = ranking['分项合计-产品'].tolist().sort(reverse=True)
