@@ -191,7 +191,6 @@ fundname = ans.split(' ')[1]
 fund_manager = ranking[ranking['基金代码']==fundcode]['基金经理'].item()
 fund_company = ranking[ranking['基金代码']==fundcode]['基金公司'].item()
 
-st.dataframe(ranking['分项合计-产品'])
 ## 产品得分
 score_product = ranking[ranking['基金代码']==fundcode]['分项合计-产品'].item()
 score_product_all = ranking['分项合计-产品'].tolist()
@@ -215,7 +214,8 @@ score_company = round(score_company, 2)
 
 ## 总分
 score_final = ranking[ranking['基金代码']==fundcode]['综合得分'].item()
-score_final_all = ranking['综合得分'].tolist().sort(reverse=True)
+score_final_all = ranking['综合得分'].tolist()
+score_final_all.sort(reverse=True)
 score_final_rank = score_final_all.index(score_final) + 1
 score_final = round(score_final, 2)
 
