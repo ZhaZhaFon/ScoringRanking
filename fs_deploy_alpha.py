@@ -27,6 +27,10 @@ ranking = pd.read_excel(file_name, index_col=0).reset_index().rename(columns={"i
 product_tuple = tuple(ranking['基金代码'].tolist())
 manager_tuple = tuple(ranking['基金经理'].tolist())
 company_tuple = tuple(ranking['基金公司'].tolist())
+product_manager_company = []
+for i in range(len(product_tuple)):
+    product_manager_company.append(f"{product_tuple[i]} {manager_tuple[i]}/{company_tuple[i]}")
+product_manager_company_tuple = tuple(product_manager_company)
 st.write(f"`#` 加载完毕, 呈现结果基于量化评分排名: [{file_name.split('/')[-1]}]({file_name})")
 
 # 雷达图 - 基金产品
@@ -39,11 +43,11 @@ def product_radar(this_fund):
                     this_fund['风险收益获取能力得分-产品'].astype('float').round(2),
                     this_fund['规模得分-产品'].astype('float').round(2)]]
     average_scores = [[(ranking['分项合计-产品'].sum()/len(ranking)).round(2),
-                    (ranking['盈利得分-产品'].sum()/len(ranking)).round(2),
-                    (ranking['回撤控制得分-产品'].sum()/len(ranking)).round(2),
-                    (ranking['业绩稳定性得分-产品'].sum()/len(ranking)).round(2),
-                    (ranking['风险收益获取能力得分-产品'].sum()/len(ranking)).round(2),
-                    (ranking['规模得分-产品'].sum()/len(ranking)).round(2)]]
+                       (ranking['盈利得分-产品'].sum()/len(ranking)).round(2),
+                       (ranking['回撤控制得分-产品'].sum()/len(ranking)).round(2),
+                       (ranking['业绩稳定性得分-产品'].sum()/len(ranking)).round(2),
+                       (ranking['风险收益获取能力得分-产品'].sum()/len(ranking)).round(2),
+                       (ranking['规模得分-产品'].sum()/len(ranking)).round(2)]]
     radar_product = (
         Radar()
         .add_schema(
@@ -86,10 +90,10 @@ def manager_radar(this_fund):
                     this_fund['规模得分-经理'].astype('float').round(2),
                     this_fund['投资经验得分-经理'].astype('float').round(2)]]
     average_scores = [[(ranking['分项合计-经理'].sum()/len(ranking)).round(2),
-                    (ranking['盈利得分-经理'].sum()/len(ranking)).round(2),
-                    (ranking['风控得分-经理'].sum()/len(ranking)).round(2),
-                    (ranking['规模得分-经理'].sum()/len(ranking)).round(2),
-                    (ranking['投资经验得分-经理'].sum()/len(ranking)).round(2)]]
+                       (ranking['盈利得分-经理'].sum()/len(ranking)).round(2),
+                       (ranking['风控得分-经理'].sum()/len(ranking)).round(2),
+                       (ranking['规模得分-经理'].sum()/len(ranking)).round(2),
+                       (ranking['投资经验得分-经理'].sum()/len(ranking)).round(2)]]
     radar_manager = (
         Radar()
         .add_schema(
@@ -129,8 +133,8 @@ def company_radar(this_fund):
                     this_fund['短期业绩得分-公司'].astype('float').round(2),
                     this_fund['长期业绩得分-公司'].astype('float').round(2)]]
     average_scores = [[(ranking['分项合计-公司'].sum()/len(ranking)).round(2),
-                    (ranking['短期业绩得分-公司'].sum()/len(ranking)).round(2),
-                    (ranking['长期业绩得分-公司'].sum()/len(ranking)).round(2)]]
+                       (ranking['短期业绩得分-公司'].sum()/len(ranking)).round(2),
+                       (ranking['长期业绩得分-公司'].sum()/len(ranking)).round(2)]]
     radar_company = (
         Radar()
         .add_schema(
@@ -141,7 +145,7 @@ def company_radar(this_fund):
             ],
             
         )
-        .add(series_name=f"{this_fund['基金简称']}（{this_fund['基金代码']}）", 
+        .add(series_name=f"{this_fund['基金公司']}", 
             data=this_scores,
             color="#CD0000",
             )
@@ -171,7 +175,7 @@ left.write("##### 【基金池】")
 form_left = left.form("template_form")
 fundcode = form_left.selectbox(
     label="主动权益基金",
-    options=product_tuple,
+    options=product_manager_company_tuple,
 )
 radar_type = form_left.radio(
     label="量化评分维度",
@@ -182,6 +186,9 @@ submit = form_left.form_submit_button("量化评分")
 # 右侧布局
 
 right.write("##### 【基本信息】")
+#right.write(f'- 基金产品: {fundname}({fundcode})')
+
+# 提交
 
 if submit:
     this_fund = ranking[ranking['基金代码']==fundcode].iloc[0, :]
