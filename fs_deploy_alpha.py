@@ -173,10 +173,11 @@ left, right = st.columns(2)
 
 left.write("##### 【基金池】")
 form_left = left.form("template_form")
-fundcode = form_left.selectbox(
+ans = form_left.selectbox(
     label="主动权益基金",
     options=product_manager_company_tuple,
 )
+fundcode = ans.split(' ')[0]
 radar_type = form_left.radio(
     label="量化评分维度",
     options=["基金产品", "基金经理", "基金公司"],
