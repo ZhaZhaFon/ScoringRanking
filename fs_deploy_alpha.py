@@ -26,9 +26,6 @@ st.write("`#` 数据加载(约5s)...")
 ranking = pd.read_excel(file_name, index_col=0).reset_index().rename(columns={"index": "基金代码"})
 options_df = pd.DataFrame()
 options_df['选项卡'] = ranking['基金代码'] + ' ' + ranking['基金简称']
-product_tuple = tuple(ranking['基金代码'].tolist())
-manager_tuple = tuple(ranking['基金经理'].tolist())
-company_tuple = tuple(ranking['基金公司'].tolist())
 options_tuple = tuple(options_df['选项卡'].tolist())
 st.write(f"`#` 加载完毕, 呈现结果基于量化评分排名: [{file_name.split('/')[-1]}]({file_name})")
 
@@ -194,24 +191,25 @@ fundname = ans.split(' ')[1]
 fund_manager = ranking[ranking['基金代码']==fundcode]['基金经理'].item()
 fund_company = ranking[ranking['基金代码']==fundcode]['基金公司'].item()
 
-ranking.fillna(value=-999, inplace=True) ### TODO
-
 st.dataframe(ranking['分项合计-产品'])
 ## 产品得分
 score_product = ranking[ranking['基金代码']==fundcode]['分项合计-产品'].item()
-score_product_all = ranking['分项合计-产品'].tolist().sort(reverse=True)
+score_product_all = ranking['分项合计-产品'].tolist()
+score_product_all.sort(reverse=True)
 score_product_rank = score_product_all.index(score_product) + 1
 score_product = round(score_product, 2)
 
 ## 经理得分
 score_manager = ranking[ranking['基金代码']==fundcode]['分项合计-经理'].item()
-score_manager_all = ranking['分项合计-经理'].tolist().sort(reverse=True)
+score_manager_all = ranking['分项合计-经理'].tolist()
+score_manager_all.sort(reverse=True)
 score_manager_rank = score_manager_all.index(score_manager) + 1
 score_manager = round(score_manager, 2)
 
 ## 公司得分
 score_company = ranking[ranking['基金代码']==fundcode]['分项合计-公司'].item()
-score_company_all = ranking['分项合计-公司'].tolist().sort(reverse=True)
+score_company_all = ranking['分项合计-公司'].tolist()
+score_company_all.sort(reverse=True)
 score_company_rank = score_company_all.index(score_company) + 1
 score_company = round(score_company, 2)
 
