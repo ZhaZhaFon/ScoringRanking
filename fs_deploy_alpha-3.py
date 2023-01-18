@@ -3,7 +3,7 @@
 
 ### TODO ###
 
-file_name = 'https://github.com/ZhaZhaFon/ScoringRanking/files/10444563/results-revised_20221231.xlsx'
+file_name = 'https://github.com/ZhaZhaFon/ScoringRanking/files/10374068/results_20221231.xlsx'
 
 ### TODO ###
 
@@ -36,11 +36,13 @@ def product_radar(this_fund):
                     this_fund['盈利得分-产品'].astype('float').round(2),
                     this_fund['回撤控制得分-产品'].astype('float').round(2),
                     this_fund['业绩稳定性得分-产品'].astype('float').round(2),
+                    this_fund['风险收益获取能力得分-产品'].astype('float').round(2),
                     this_fund['规模得分-产品'].astype('float').round(2)]]
     average_scores = [[(ranking['分项合计-产品'].sum()/len(ranking)).round(2),
                        (ranking['盈利得分-产品'].sum()/len(ranking)).round(2),
                        (ranking['回撤控制得分-产品'].sum()/len(ranking)).round(2),
                        (ranking['业绩稳定性得分-产品'].sum()/len(ranking)).round(2),
+                       (ranking['风险收益获取能力得分-产品'].sum()/len(ranking)).round(2),
                        (ranking['规模得分-产品'].sum()/len(ranking)).round(2)]]
     radar_product = (
         Radar()
@@ -50,6 +52,7 @@ def product_radar(this_fund):
                 opts.RadarIndicatorItem(name="盈利能力", min_=ranking['盈利得分-产品'].min(), max_=ranking['盈利得分-产品'].max()),
                 opts.RadarIndicatorItem(name="回撤控制", min_=ranking['回撤控制得分-产品'].min(), max_=ranking['回撤控制得分-产品'].max()),
                 opts.RadarIndicatorItem(name="业绩稳定性", min_=ranking['业绩稳定性得分-产品'].min(), max_=ranking['业绩稳定性得分-产品'].max()),
+                opts.RadarIndicatorItem(name="风险收益获取能力", min_=ranking['风险收益获取能力得分-产品'].min(), max_=ranking['风险收益获取能力得分-产品'].max()),
                 opts.RadarIndicatorItem(name="基金规模", min_=1, max_=5)
             ],
             
