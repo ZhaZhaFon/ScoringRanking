@@ -3,7 +3,7 @@
 
 ### TODO ###
 
-file_name = 'https://github.com/ZhaZhaFon/ScoringRanking/files/10576799/results-20230131.xlsx'
+file_name = 'https://github.com/ZhaZhaFon/ScoringRanking/files/10444563/results-revised_20221231.xlsx'
 
 ### TODO ###
 
